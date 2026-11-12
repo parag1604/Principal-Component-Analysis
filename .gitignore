@@ -162,7 +162,9 @@ cython_debug/
 #.idea/
 
 # Project-specific
-data/
+# data is never committed, except the small colon cancer CSV used by --data colon
+data/*
+!data/colon_cancer.csv
 models/
 checkpoints/
 runs/

@@ -55,11 +55,18 @@ def main():
     ax1.set_xlabel("principal component")
     ax1.set_ylabel("explained variance ratio")
     ax1.legend()
-    sc = ax2.scatter(Z[:, 0], Z[:, 1], c=y, s=8, cmap="tab10")
+    if args.data == "digits":
+        sc = ax2.scatter(Z[:, 0], Z[:, 1], c=y, s=8, cmap="tab10")
+        plt.colorbar(sc, ax=ax2, label="label")
+    else:
+        # two classes (colon: 1 = tumour, 0 = normal): a legend reads better
+        names = {0: "normal", 1: "tumour"} if args.data == "colon" else {0: "class 0", 1: "class 1"}
+        for c, colour in zip((0, 1), ("tab:blue", "tab:orange")):
+            ax2.scatter(Z[y == c, 0], Z[y == c, 1], s=20, color=colour, label=names[c])
+        ax2.legend()
     ax2.set_xlabel("PC 1")
     ax2.set_ylabel("PC 2")
     ax2.set_title("Data projected on the top-2 components")
-    plt.colorbar(sc, ax=ax2, label="label")
     plt.tight_layout()
     plt.savefig(f"pca_{args.data}.png")
     print(f"Saved pca_{args.data}.png")
