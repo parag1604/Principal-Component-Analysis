@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 Every script takes `--data {digits,colon,wide}`:
 
-- `digits` (default): the 8x8 handwritten digits (1797 samples x 64 pixels) that ship inside scikit-learn. Nothing to download.
+- `digits` (default): the 8x8 handwritten digits (1797 samples x 64 pixels) that ship inside scikit-learn.
 - `colon`: the colon cancer gene-expression data of Alon et al. (1999),[^alon] 62 tissues (40 tumour, 22 normal) x 2000 genes. **The file is included in this repository** as `data/colon_cancer.csv` (1.6 MB), so `--data colon` works out of the box; `--path` points it at another copy. Layout: one header row, then one row per tissue with an id in the first column, the 2000 expression values, and the class label in the last column (1 = tumour, 0 = normal). The same data is also packaged in the Bioconductor package [colonCA](https://bioconductor.org/packages/colonCA/).
 - `wide`: a synthetic stand-in with the same shape as the colon data (62 x 2000, a rank-5 signal plus noise), generated in memory.
 
